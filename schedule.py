@@ -49,4 +49,17 @@ class Schedule():
         else:
             print("can't sort by "+str(field)+" yet")
             return self
- 
+
+    def title(self, phrase):
+        ''' filters courses by titles containing phrase '''
+        return Schedule([course for course in self.courses if phrase in course['name']])
+
+    def days(self, days):
+        ''' CONNOR 6C - filters courses that have classes only on the given days '''
+        day_set = set(days)
+        def check_days(course):
+            ''' returns False if course meets on any day that is not allowed '''
+            checks = [set(time['days']).issubset(day_set) for time in course['times']]
+            return len(checks) > 0 and all(checks)
+        
+        return Schedule([course for course in self.courses if check_days(course)])

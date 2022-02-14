@@ -20,6 +20,7 @@ subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)
 description (filter by phrase in description)
 timeofday (filter by day and time, e.g. meets at 11 on Wed)
+days (filter by meeting days–classes shown will only meet on the given days)
 '''
 
 terms = {c['term'] for c in schedule.courses}
@@ -47,6 +48,13 @@ def topmenu():
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
+        # This command won't work until the description method is implemented
+        elif command in ['ds', 'desc', 'description']:
+            phrase = input("enter a phrase: ")
+            schedule = schedule.description(phrase)
+        elif command in ['d', 'days']:
+            days = input("enter some days {m, tu, w, th, f} - comma separated: ")
+            schedule = schedule.days(days.lower().replace(" ", "").split(","))
         else:
             print('command',command,'is not supported')
             continue
