@@ -66,7 +66,7 @@ class Schedule():
 
     def description(self,phrase):
         '''MALAI 6b - Filters based on the description of the course'''
-        return Schedule([course for course in self.courses if course['description'] in phrase])
+        return Schedule([course for course in self.courses if phrase in course['description']])
 
     def stillFree(self,subjects):
         ''' MALAI 6C - Finds out the courses that does not have students waiting to enroll in a particular subject'''
