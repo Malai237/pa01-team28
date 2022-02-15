@@ -21,6 +21,7 @@ title  (filter by phrase in title)
 description (filter by phrase in description)
 timeofday (filter by day and time, e.g. meets at 11 on Wed)
 days (filter by meeting days–classes shown will only meet on the given days)
+stillfree (filter the classes that have seats still available)
 '''
 
 terms = {c['term'] for c in schedule.courses}
@@ -48,13 +49,25 @@ def topmenu():
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
-        # This command won't work until the description method is implemented
         elif command in ['ds', 'desc', 'description']:
             phrase = input("enter a phrase: ")
             schedule = schedule.description(phrase)
         elif command in ['d', 'days']:
             days = input("enter some days {m, tu, w, th, f} - comma separated: ")
             schedule = schedule.days(days.lower().replace(" ", "").split(","))
+        elif command in ['i','instructor']:
+            pointer = input("find instructor by email/last_name: ")
+            while (pointer!="email" and pointer!= "last_name"):
+                pointer = input("please type either email or last_name: ")
+            if pointer == "email":
+                email = input("enter instructor email address: ")
+                schedule = schedule.email([email])
+            else:
+                last_name = input("enter instructor email address: ")
+                schedule = schedule.lastname([last_name])
+        elif command in ['still_free', 'sf']:
+            subject = input("enter a subject:")
+            schedule = schedule.stillFree([subject])
         else:
             print('command',command,'is not supported')
             continue
