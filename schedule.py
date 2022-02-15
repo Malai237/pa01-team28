@@ -63,3 +63,12 @@ class Schedule():
             return len(checks) > 0 and all(checks)
         
         return Schedule([course for course in self.courses if check_days(course)])
+
+    def description(self,phrase):
+        '''MALAI 6b - Filters based on the description of the course'''
+        return Schedule([course for course in self.courses if course['description'] in phrase])
+
+    def stillFree(self,subjects):
+        ''' MALAI 6C - Finds out the courses that does not have students waiting to enroll in a particular subject'''
+        return Schedule([course for course in self.courses if course['subject'] in subjects and ((course['waiting'])<=0)])
+
