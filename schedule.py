@@ -72,3 +72,6 @@ class Schedule():
         ''' MALAI 6C - Finds out the courses that does not have students waiting to enroll in a particular subject'''
         return Schedule([course for course in self.courses if course['subject'] in subjects and ((course['waiting'])<=0)])
 
+    def small(self, cap):
+        ''' Bradley 6c - filters courses by course capacity, returning courses with open enrollment and a lower, or the same, capacity than/as cap '''
+        return Schedule([course for course in self.courses if course['limit'] != None and course['limit'] > 0 and cap <= course['limit'] and course['status_text'] == 'Open'])
