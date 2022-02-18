@@ -22,6 +22,7 @@ description (filter by phrase in description)
 timeofday (filter by day and time, e.g. meets at 11 on Wed)
 days (filter by meeting days–classes shown will only meet on the given days)
 stillfree (filter the classes that have seats still available)
+smallclass (filter out the classes that have a higher capacity than the given class size, have a capacity of 0, or are not fully open for enrollment (e.g. "open consent req." is excluded))
 '''
 
 terms = {c['term'] for c in schedule.courses}
@@ -71,6 +72,9 @@ def topmenu():
         elif command in ['ti', 'title']:
             tphrase = input("enter a phrase: ")
             schedule = schedule.title(tphrase)
+        elif command in ['small', 'small_class']:#Bradley's 7e
+            smallnum = int(input("enter the maximum class capacity you want to see courses for: "))
+            schedule = schedule.small(smallnum)
         else:
             print('command',command,'is not supported')
             continue
