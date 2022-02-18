@@ -68,6 +68,9 @@ def topmenu():
         elif command in ['still_free', 'sf']:
             subject = input("enter a subject:")
             schedule = schedule.stillFree([subject])
+        elif command in ['ti', 'title']:
+            tphrase = input("enter a phrase: ")
+            schedule = schedule.title(tphrase)
         else:
             print('command',command,'is not supported')
             continue
