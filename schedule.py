@@ -74,4 +74,4 @@ class Schedule():
 
     def small(self, cap):
         ''' Bradley 6c - filters courses by course capacity, returning courses with open enrollment and a lower, or the same, capacity than/as cap '''
-        return Schedule([course for course in self.courses if course['limit'] != None and course['limit'] > 0 and cap <= course['limit'] and course['status_text'] == 'Open'])
+        return Schedule([course for course in self.courses if course['limit'] != None and course['limit'] > 0 and cap >= course['limit'] and course['status_text'] == 'Open'])
