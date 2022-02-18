@@ -20,7 +20,7 @@ subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)
 description (filter by phrase in description)
 timeofday (filter by day and time, e.g. meets at 11 on Wed)
-days (filter by meeting days; classes shown will only meet on the given days)
+days (classes shown will only meet on the given days)
 stillfree (filter the classes that have seats still available)
 smallclass (filter out the classes that have a higher capacity than the given class size, have a capacity of 0, or are not fully open for enrollment (e.g. "open consent req." is excluded))
 '''
